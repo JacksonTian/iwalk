@@ -1,7 +1,7 @@
 {
   "name": "iwalk",
   "version": "0.0.1",
-  "description": "walk, walker",
+  "description": "Directory walk",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -15,8 +15,13 @@
   },
   "keywords": [
     "walk",
-    "walker"
+    "walker",
+    "folder walk",
+    "directory walk"
   ],
+  "dependencies": {
+    "bagpipe": "*"
+  },
   "author": "Jackson Tian",
   "license": "MIT"
 }
