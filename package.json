@@ -1,0 +1,22 @@
+{
+  "name": "iwalk",
+  "version": "0.0.1",
+  "description": "walk, walker",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JacksonTian/iwalk.git"
+  },
+  "keywords": [
+    "walk",
+    "walker"
+  ],
+  "author": "Jackson Tian",
+  "license": "MIT"
+}
