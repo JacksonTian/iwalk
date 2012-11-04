@@ -4,12 +4,12 @@ iwalk 爱彳亍
 
 > 爱上您的磁盘目录
 
-# 安装
+## 安装
 
 ```
 npm install iwalk
 ```
-# 使用
+## 使用
 
 ```
 var Walker = require("iwalk");
@@ -20,4 +20,7 @@ walker.walk(source, function (filename, isDirectory) {
   console.log(isDirectory);
 });
 
+walker.on('end', function () {
+  console.log('遍历完啦');
+});
 ```
