@@ -40,51 +40,135 @@
     </header>
 <div class="container content">
   <div class="row">
-  	<div class="span3 bs-docs-sidebar">
+    <div class="span3 bs-docs-sidebar">
       <ul class="nav nav-list bs-docs-sidenav affix">
 
-  <li class="level_2">
-    <a href="#index_安装" title="安装">
-      <i class="icon-chevron-right"></i>安装
-    </a>
-  </li>
-
-  <li class="level_2">
-    <a href="#index_使用" title="使用">
-      <i class="icon-chevron-right"></i>使用
-    </a>
+  <li>
+    <a href="#api_index"><i class="icon-chevron-right"></i>index</a>
   </li>
 
 </ul>
 
     </div>
     <div class="span9">
-      <section>
-        <h1>iwalk 爱彳亍</h1>
-<p>遍历文件夹并得到所有文件路径
+      
+        <section id="api_index" class="api">
+  <h2>index: API索引</h2>
+  <ul class="indexs">
+  
+    <li>
+      <a href="#_Walker">Walker</a>
+    </li>
 
-</p>
-<blockquote>
-<p>爱上您的磁盘目录
+    <li>
+      <a href="#_walk">walk</a>
+    </li>
 
-</p>
-</blockquote>
-<h2>安装</h2>
-<pre><code>npm install iwalk</code></pre>
-<h2>使用</h2>
-<pre><code>var Walker = require(&quot;iwalk&quot;);
+  </ul>
+  <hr />
 
-var walker = new Walker();
-walker.walk(source, function (filename, isDirectory) {
-  console.log(filename);
-  console.log(isDirectory);
-});
+  
+  <h3 id="_Walker">
+    Walker
+  </h3>
+  
 
-walker.on(&#39;end&#39;, function () {
-  console.log(&#39;遍历完啦&#39;);
-});</code></pre>
+  <p>Walker构造函数，继承自EventEmitter。用于遍历磁盘目录</p>
 
-      </section>
+<h2>Events</h2>
+
+<ul>
+<li><code>walk</code>。遍历到文件或是文件夹时触发，返回路径和是否文件夹</li>
+<li><code>file</code>。遍历到文件时触发，返回文件路径</li>
+<li><code>folder</code>。遍历到文件夹时触发，返回文件夹路径</li>
+<li><code>end</code>。遍历完所有子目录时触发。</li>
+<li><code>error</code>。错误事件，当发生错误时，不会进行沿该分支向下遍历。</li>
+</ul>
+
+  <table class="table">
+  
+    <tr>
+      <td>函数</td>
+      <td>Walker()</td> 
+      <td></td>
+      <td>Walker</td>
+    </tr>
+  
+
+  
+    <tr>
+      <td>代码</td><td colspan="3"><pre><code>function Walker() {
+  events.EventEmitter.call(this);
+  var that = this;
+  this.on('walk', function (_path, isDirectory) {
+    if (isDirectory) {
+      that.emit('folder', _path);
+    } else {
+      that.emit('file', _path);
+    }
+    if (that.counter &lt; 0) {
+      // 让业务逻辑先执行
+      process.nextTick(function () {
+        that.emit('end');
+      });
+    }
+  });
+  this.counter = 0;
+  // 设置并发为500
+  this.bagpipe = new Bagpipe(500);
+}
+
+util.inherits(Walker, events.EventEmitter);</code></pre></td>
+    </tr>
+  
+  </table>
+  
+  
+  <h3 id="_walk">
+    walk
+  </h3>
+  
+
+  <p>遍历方法</p>
+
+  <table class="table">
+  
+    <tr>
+      <td>方法</td>
+      <td>Walker.prototype.walk()</td> 
+      <td></td>
+      <td>walk</td>
+    </tr>
+  
+
+    <tr>
+      <td>参数</td>
+      <td>source(String)</td>
+      <td colspan="2">需要遍历的目录路径</td>
+    </tr>
+  
+
+    <tr>
+      <td>参数</td>
+      <td>callback(Function)</td>
+      <td colspan="2">回调函数，绑定到walk事件。遍历到每一个文件或者文件夹时触发，返回路径和是否目录</td>
+    </tr>
+  
+
+  
+    <tr>
+      <td>代码</td><td colspan="3"><pre><code>Walker.prototype.walk = function (source, callback) {
+  if (typeof callback === 'function') {
+    this.on('walk', callback);
+  }
+  this.getList(source);
+};</code></pre></td>
+    </tr>
+  
+  </table>
+  
+</section>
+      
     </div>
   </div>
 </div>
