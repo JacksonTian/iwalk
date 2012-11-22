@@ -1,10 +1,16 @@
 var path = require('path');
-var Walker = require("../");
+var Walker = require('../');
+var fs = require('fs');
 
 var testCases = [];
 
 //源路径
 var source = path.resolve('..');
+
+//创建一个空目录做测试
+if (!fs.existsSync('./testEmptyDir')) {
+  fs.mkdirSync('./testEmptyDir');
+}
 
 //执行测试方法，保证测试按顺序执行
 var runTest = function () {
