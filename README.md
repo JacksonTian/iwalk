@@ -21,3 +21,11 @@ walker.walk(source, function (filename, isDirectory) {
 });
 
 ```
+#过滤目录
+
+```
+var walker = new Walker({
+    filterDir : ['.svn', 'node_modules', 'demo', '_source', 'com', 'test', 'doc', 'docs']
+});
+
+```
