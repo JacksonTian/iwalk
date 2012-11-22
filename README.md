@@ -23,6 +23,8 @@ walker.walk(source, function (filename, isDirectory) {
 ```
 #过滤目录
 
+可以在获取文件的时候，跳过一些指定目录
+
 ```
 var walker = new Walker({
     filterDir : ['.svn', 'node_modules', 'demo', '_source', 'com', 'test', 'doc', 'docs']
