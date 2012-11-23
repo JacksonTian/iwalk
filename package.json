@@ -1,9 +1,10 @@
 {
   "name": "iwalk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Directory walk",
   "main": "index.js",
   "directories": {
+    "example": "example",
     "test": "test"
   },
   "scripts": {
@@ -20,8 +21,13 @@
     "directory walk"
   ],
   "dependencies": {
-    "bagpipe": "*"
+    "bagpipe": "0.2.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
   },
   "author": "Jackson Tian",
-  "license": "MIT"
+  "license": "MIT",
+  "readmeFilename": "README.md"
 }
