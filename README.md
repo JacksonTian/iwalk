@@ -4,12 +4,12 @@ iwalk 爱彳亍
 
 > 爱上您的磁盘目录
 
-## 安装
+## Installation
 
 ```
 npm install iwalk
 ```
-## 使用
+## Usage
 
 ```
 var Walker = require("iwalk");
@@ -24,13 +24,18 @@ walker.on('end', function () {
   console.log('遍历完啦');
 });
 ```
-#过滤目录
+## Options
 
 可以在获取文件的时候，跳过一些指定目录
 
 ```
 var walker = new Walker({
-    filterDir : ['.svn', 'node_modules', 'demo', '_source', 'com', 'test', 'doc', 'docs']
+  // ignore dir
+  filterDir: ['.svn', 'node_modules', 'demo', '_source', 'com', 'test', 'doc', 'docs'],
+  // limit open dir count at the same time for avoid too many open files issue
+  limit: 10
 });
-
 ```
+
+## License
+The MIT License
