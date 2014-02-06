@@ -8,7 +8,18 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "make test"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "iwalk/lib",
+      "data-cover-flags": {
+        "debug": false
+      }
+    },
+    "travis-cov": {
+      "threshold": 97
+    }
   },
   "repository": {
     "type": "git",
@@ -25,7 +36,9 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "should": "*"
+    "should": "*",
+    "blanket": "*",
+    "travis-cov": "*"
   },
   "author": "Jackson Tian",
   "license": "MIT",

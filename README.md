@@ -20,8 +20,8 @@ walker.walk(source, function (filename, isDirectory) {
   console.log(isDirectory);
 });
 
-walker.on('end', function () {
-  console.log('遍历完啦');
+walker.on('end', function (total) {
+  console.log('遍历完啦, 一共%s个文件', total);
 });
 ```
 ## Options
