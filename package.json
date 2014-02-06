@@ -1,6 +1,6 @@
 {
   "name": "iwalk",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Directory walk",
   "main": "index.js",
   "directories": {
